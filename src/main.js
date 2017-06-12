@@ -25,6 +25,9 @@ new Vue({
 })
 
 
-// Configure l'entete http au niveau de l'autorisation
+// Configure l'entête http au niveau de l'autorisation pour que chaquete requete soit signé avec l'entete Authorisation
+// Voir aussi HTTP Header Authorization
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization
+// https://fr.wikipedia.org/wiki/Authentification_HTTP
 Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('id_token');
 

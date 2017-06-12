@@ -35,18 +35,13 @@
 
       submit() {
 
-        var credentials = {
-          email: this.credentials.email,
-          password: this.credentials.password
-        }
-
-        this.$http.post('http://localhost:3000/signin', credentials).then((res) => {
+        this.$http.post('http://localhost:3000/signin', this.credentials).then((res) => {
           localStorage.setItem('id_token', res.body.id_token)
           localStorage.setItem('user', JSON.stringify(res.body.user))
           Store.user.datas = res.body.user;
           Store.user.authenticated = true
 
-          this.$router.push('/private');
+          this.$router.push('/private'); //redirection
 
         }, (err) => {
           this.$toasted.show('Votre email/password est incorrect').goAway(1500); // plugin Toast implemented

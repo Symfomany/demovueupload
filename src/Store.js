@@ -11,6 +11,7 @@ export default {
 
 
     checkAuth() {
+        // savoir si il est Authentifié, Si oui, recharger le Store depuis la session
         var jwt = localStorage.getItem('id_token')
         if (jwt) {
             this.user.authenticated = true

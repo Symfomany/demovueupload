@@ -37,10 +37,13 @@
 
     methods: {
       logout() {
+        // remove session datas
         localStorage.removeItem('id_token')
         localStorage.removeItem('user')
+
         Store.user.datas = {};
         Store.user.authenticated = false
+
         this.$router.push('/login') //redirection
       }
     }

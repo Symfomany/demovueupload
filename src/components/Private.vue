@@ -52,6 +52,10 @@
 
     data() {
       return {
+        credentials: {
+          name: '',
+          email: ''
+        },
         error: '',
         img: 'http://findicons.com/files/icons/1072/face_avatars/300/a04.png'
       }
@@ -67,14 +71,15 @@
     },
     methods: {
 
+
       upload(e) {
 
-        // preview image
+        // preview image in browser (voir JS Doc)
         var reader = new FileReader();
         reader.onload = (e) => this.img = e.target.result;
         reader.readAsDataURL(event.target.files[0]);
 
-        // Send File as Form Data
+        // Send File as Form Data in server via AJAX
         let file = event.target.files[0]
         let data = new FormData();
         data.append('avatar', file); // append to form
@@ -86,17 +91,20 @@
             this.$toasted.show('Votre image a bien été uploadée').goAway(1500); // plugin Toast implemented
           }
         }, (err) => {
+          this.$toasted.show(err.body).goAway(1500); // plugin Toast implemented
+
         });
       },
+
+
+
+
       submit() {
 
-        let credentials = {
-          name: this.credentials.name,
-          email: this.credentials.email
-        }
-        this.$http.post('http://localhost:3000/update', credentials).then(data => {
-          localStorage.setItem('user', JSON.stringify(credentials))
-          this.$router.push('/')
+
+        this.$http.post('http://localhost:3000/update', this.credentials).then(data => {
+          localStorage.setItem('user', JSON.stringify(this.credentials)) // mise à jour dans la session
+          this.$router.push('/') //redirection
           this.$toasted.show('Votre compte a bien été modifié').goAway(1500); // plugin Toast implemented
 
         }, (err) => {
@@ -105,13 +113,6 @@
       }
     },
 
-
-    route: { // it's private...'
-      canActivate() {
-        console.log(Store.user.authenticated)
-        return Store.user.authenticated
-      }
-    }
 
   }
 </script>

@@ -23,10 +23,9 @@
 
     methods: {
       getQuote() {
-        this.$http
-          .get('http://localhost:3000/quote', (data) => {
-            this.quote = data;
-          })
+        this.$http.get('http://localhost:3000/quote', (data) => {
+          this.quote = data;
+        })
           .error((err) => console.log(err))
       }
     }
