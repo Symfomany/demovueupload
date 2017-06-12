@@ -224,19 +224,18 @@ let connection = r.connect({
 
         // préparation de l'upload via le module upload-file (vérification du type de fichier,repertoire, taille etc...)
 
-        let nomAleatoire = Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
         var upload = new Upload({
             dest: 'uploads/users',
             maxFileSize: 100 * 2048, // en Byte
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             rename: function (name, file) {
-                return nomAleatoire;
+                return file.filename;
             }
         });
 
         // quand l'upload est fini
         upload.on('end', function (fields, files) {
-            r.table('users').filter({ email: req.user.email }).update({ picture: nomAleatoire }).run(connection, (err, result) => {
+            r.table('users').filter({ email: req.user.email }).update({ picture: files.avatar.filename }).run(connection, (err, result) => {
                 if (err) throw err;
                 res.json(true)
             });

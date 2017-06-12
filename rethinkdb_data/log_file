@@ -1,0 +1,18 @@
+2017-06-12T08:46:37.045593352 0.252899s notice: Recursively removing directory /home/boyer/Bureau/demovueupload/rethinkdb_data/tmp
+2017-06-12T08:46:37.086279679 0.293585s notice: Initializing directory /home/boyer/Bureau/demovueupload/rethinkdb_data
+2017-06-12T08:46:37.086378187 0.293684s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/boyer/Bureau/demovueupload/rethinkdb_data' did not already exist or is empty.)
+2017-06-12T08:46:37.086472460 0.293778s notice: Running rethinkdb 2.3.5~0xenial (GCC 5.3.1)...
+2017-06-12T08:46:37.090107927 0.297420s notice: Running on Linux 4.4.0-78-generic x86_64
+2017-06-12T08:46:37.090208983 0.297514s notice: Loading data from directory /home/boyer/Bureau/demovueupload/rethinkdb_data
+2017-06-12T08:46:37.481717833 0.689024s info: Automatically using cache size of 4280 MB
+2017-06-12T08:46:37.482920821 0.690226s notice: Listening for intracluster connections on port 29015
+2017-06-12T08:46:37.513115872 0.720422s notice: Listening for client driver connections on port 28015
+2017-06-12T08:46:37.513238398 0.720544s notice: Listening for administrative HTTP connections on port 8080
+2017-06-12T08:46:37.513243329 0.720549s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-06-12T08:46:37.513245447 0.720551s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-06-12T08:46:37.513248676 0.720554s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2017-06-12T08:46:37.513253253 0.720559s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-06-12T08:46:37.513256685 0.720562s notice: Server ready, "boyer_HP_ENVY_TS_17_Notebook_PC_xv1" 5cc3ee1c-e043-4261-ae1a-dba5c04d2fb9
+2017-06-12T08:47:09.998807644 33.206113s info: Table 7ef8aa14-5571-405e-b2fe-b3c4812a8edb: Starting a new Raft election for term 1.
+2017-06-12T08:47:10.026166038 33.233472s info: Table 7ef8aa14-5571-405e-b2fe-b3c4812a8edb: Added replica on this server.
+2017-06-12T08:47:10.109961563 33.317267s info: Table 7ef8aa14-5571-405e-b2fe-b3c4812a8edb: This server is Raft leader for term 1. Latest log index is 0.
