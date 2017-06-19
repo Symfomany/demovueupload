@@ -15,6 +15,8 @@ let logger = require('morgan');
 let helmet = require('helmet');
 let jwt = require('jsonwebtoken'); // permet de créer un jeton pour l'utilisateur 
 let expressJwt = require('express-jwt');
+let path = require('path');
+
 /**
  * http://www.meanjs.fr/jwt-lauthentification-avec-token-plutot-quavec-cookie/
  * express-jwt va intercepter toutes les requêtes entrantes, desquelles il va récupérer dans le header 'Authorization: Bearer ...', puis va décoder le token avec le secret. 
@@ -63,7 +65,8 @@ app.use(function (error, request, response, next) {
 
 /**
  *
-Un JWT est un objet JSON encodé qu'un serveur (Node par exemple) encode en utilisant une clé privée. 
+Un JWT est un objet JSON encodé qu'un serveur (Node par exemple)
+ encode en utilisant une clé privée. 
 
 L'objet JSON encodé est un token que vous enverrez à un client qui s'est authentifié avec succès.
 
@@ -80,6 +83,38 @@ let secret = 'q5f6ds465sdfg4v6466f15sdf56sd1f56s165f1sd65f156s16sfdfdf4d6f4s6$5n
 let connection = r.connect({
     db: "test" //your database
 }).then((connection) => { // une fois qu'il a effectuer une connexion
+
+
+
+    app.post('/uploading', (req, res) => {
+        // préparation de l'upload via le module upload-file (vérification du type de fichier,repertoire, taille etc...)
+        let upload = new Upload({
+            dest: 'uploads/avatars',
+            maxFileSize: 100 * 2048, // en Byte
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            rename: function (name, file) {
+                console.log(file)
+                return file.filename;
+            }
+        });
+
+        // quand l'upload est fini
+        upload.on('end', (fields, files) => {
+            console.log(this)
+            // mise a jour de la base de données avec files.photo.filename 
+            res.json(true)
+
+        });
+
+        // si l'upload a rencontré une erreur
+        upload.on('error', (err) => {
+            console.log(err)
+            res.send(err);
+        });
+
+        upload.parse(req);
+    });
+
 
 
 
@@ -144,6 +179,7 @@ let connection = r.connect({
 
             cursor.toArray((err, result) => {
                 if (err) throw err;
+
                 bcrypt.compare(req.body.password, result[0].password, function (err, resultat) {
                     if (!resultat) { res.statusCode = 500; return res.json(err); }
                     user = result[0];
@@ -180,7 +216,7 @@ let connection = r.connect({
 
 
     /**
-     * Mise à joir du profil
+     * Mise à jour du profil
      */
     app.post('/update', expressJwt({ secret: secret }), (req, res) => {
 

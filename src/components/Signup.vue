@@ -65,15 +65,9 @@
 
       submit() {
 
-        let credentials = {
-          name: this.credentials.name,
-          email: this.credentials.email,
-          password: this.credentials.password
-        }
-        this.$http.post('http://localhost:3000/signup', credentials).then(data => {
-          localStorage.setItem('id_token', data.id_token)
-
-          this.$router.push('/login')
+        this.$http.post('http://localhost:3000/signup', this.credentials).then(data => {
+          localStorage.setItem('id_token', data.id_token) // je stocke id_token dans le localStorage
+          this.$router.push('/login') // redirection
           this.$toasted.show('Votre compte a bien été crée').goAway(1500); // plugin Toast implemented
 
         }, (err) => {
