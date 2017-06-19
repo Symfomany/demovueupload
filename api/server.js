@@ -87,32 +87,31 @@ let connection = r.connect({
 
 
     app.post('/uploading', (req, res) => {
-        // préparation de l'upload via le module upload-file (vérification du type de fichier,repertoire, taille etc...)
+
+        // préparation de l'upload via le module upload-file 
+        // (vérification du type de fichier,repertoire, taille du fichier etc...)
         let upload = new Upload({
             dest: 'uploads/avatars',
             maxFileSize: 100 * 2048, // en Byte
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             rename: function (name, file) {
-                console.log(file)
                 return file.filename;
             }
         });
 
         // quand l'upload est fini
         upload.on('end', (fields, files) => {
-            console.log(this)
-            // mise a jour de la base de données avec files.photo.filename 
-            res.json(true)
+            // Si l'uplaod est Ok, terminé
+            // bdd..
+            res.json(true);
 
         });
 
-        // si l'upload a rencontré une erreur
         upload.on('error', (err) => {
-            console.log(err)
-            res.send(err);
+            res.json(err);
         });
 
-        upload.parse(req);
+        upload.parse(req); // lancer  l'upload
     });
 
 

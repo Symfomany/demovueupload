@@ -8,6 +8,7 @@
     <div class="form-group">
         <h2>Select an image</h2>
         <input name="photo" type="file" @change="onFileChange" capture accept="image/*"  >
+        <img class="img-responsive" :src='image' />
      </div>
 
 
@@ -23,6 +24,7 @@
     data() {
       return {
         imgFile: null,
+        image: '',
         form: new FormData(),
         reader: new FileReader(),
       }
@@ -38,7 +40,6 @@
 
         }, (err) => {
           this.$toasted.show(err).goAway(1500); // plugin Toast implemented
-
         })
 
       },
@@ -50,6 +51,8 @@
 
         this.imgFile = files[0]; // crée une image à partir du 1er element File de la  FileList
         this.reader.readAsDataURL(this.imgFile); // associe la source de l'image à l'url encodé en  base 64
+        console.log(this.reader)
+        this.image = this.reader.result;
       },
 
 
