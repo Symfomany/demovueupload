@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Private from '@/components/Private'
 import Regenerate from '@/components/Regenerate'
-import Upload from '@/components/Upload'
+import Uploading from '@/components/Uploading'
 
 Vue.use(Router)
 
@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/upload',
       name: 'upload',
-      component: Upload
+      component: Uploading
     },
     {
       path: '/signup',
