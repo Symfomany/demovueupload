@@ -14,6 +14,9 @@ Vue.use(Toasted)
 Vue.use(VeeValidate);
 Vue.use(VueResource);
 
+var VueMaterial = require('vue-material')
+Vue.use(VueMaterial)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

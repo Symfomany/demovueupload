@@ -1,0 +1,7 @@
+.md-menu-item {
+    list-style-type: none;
+}
+
+.md-theme-default.md-menu-content .md-list {
+    padding-left: 0px;
+}

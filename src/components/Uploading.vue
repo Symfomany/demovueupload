@@ -8,7 +8,6 @@
         <h2>Select an image</h2>
         <input name="photo" type="file" @change="onFileChange" 
         capture accept="image/*"  >
-
        <!-- Previsualisation -->
         <img :src="image" />
      </div>
