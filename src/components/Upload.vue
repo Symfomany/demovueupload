@@ -20,7 +20,7 @@
                   :min-container-width="250"
                   :min-container-height="180"
                   :background="true"
-                  :rotatable="true"
+                  :rotatable="false"
                   :src="imgSrc"
                   alt="Source Image"
                   :cropmove="cropImage">
@@ -32,8 +32,6 @@
               alt="Cropped Image"
           />
           <br />
-
-        <button on-click="rotate">Rotate</button>
 
      </div>
 
@@ -66,10 +64,7 @@ import VueCropper from 'vue-cropperjs';
             this.cropImg = this.$refs.cropper.getCroppedCanvas().toDataURL();
             console.log(this.cropImg)
         },
-        rotate () {
-            // guess what this does :)
-            this.$refs.cropper.rotate(90);
-        },
+       
 
 
 
@@ -99,7 +94,7 @@ import VueCropper from 'vue-cropperjs';
                 reader.onload = (event) => {
                     this.imgSrc = event.target.result;
                     // rebuild cropperjs with the updated source
-                    this.$refs.cropper.replace(event.target.result);
+                    this.$refs.cropper.replace(this.imgSrc);
                 };
 
                 reader.readAsDataURL(file);
